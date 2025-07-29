@@ -1,0 +1,28 @@
+.footer {
+  padding: 20px 0; 
+  background-color: #0f0f43 !important;
+  text-align: center;
+
+  span.copyright,
+  ul.quicklinks {
+    font-size: 85%;
+    line-height: 1.4; 
+    margin: 0;
+    padding: 0;
+    @include heading-font;
+  }
+
+  ul.quicklinks {
+    margin-top: 4px;
+  }
+}
+@media (max-width: 768px) {
+  .footer {
+    padding: 8px 0 !important;
+    span.copyright,
+    ul.quicklinks {
+      font-size: 80%;
+      line-height: 1.3;
+    }
+  }
+}

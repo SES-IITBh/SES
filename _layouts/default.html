@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="{{ site.locale | slice: 0,2 | default: 'en' }}">
+<head>
+  {% include head.html %}
+
+  <!-- Bootstrap CSS -->
+  <link href="{{ '/assets/css/bootstrap.min.css' | relative_url }}" rel="stylesheet" />
+  <link href="{{ '/assets/css/all.min.css' | relative_url }}" rel="stylesheet" />
+  <link href="{{ '/assets/css/agency.css' | relative_url }}" rel="stylesheet" />
+
+  <!-- Orbitron Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+  
+  <style>
+    html, body {
+      background-color: #0b0c2a;
+      font-family: 'Orbitron', sans-serif;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    #mainNav {
+      background-color: rgba(11, 11, 69, 0.85);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      transition: background-color 0.3s ease;
+      z-index: 1030;
+    }
+
+    .navbar-nav .nav-link {
+      color: #ffffff !important;
+      font-weight: 500;
+      letter-spacing: 1px;
+    }
+
+    .navbar-nav .nav-link:hover {
+      color: #ffcc00 !important;
+    }
+
+    #space-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+    }
+
+    .content-wrapper {
+      position: relative;
+      z-index: 1;
+    }
+  </style>
+</head>
+
+<body id="page-top">
+  <!-- Starry Canvas Background -->
+  <canvas id="space-canvas"></canvas>
+
+  {% include nav.html %}
+
+  <div class="content-wrapper">
+    {{ content }}
+  </div>
+
+  {% include footer.html %}
+
+  <!-- Background Stars + Comets Animation -->
+  <script>
+    const canvas = document.getElementById('space-canvas');
+    const ctx = canvas.getContext('2d');
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    const stars = [], comets = [];
+    const numStars = 150, numComets = 3;
+
+    for (let i = 0; i < numStars; i++) {
+      stars.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        radius: Math.random() * 1.5,
+        velocity: Math.random() * 0.4 + 0.1
+      });
+    }
+
+    for (let i = 0; i < numComets; i++) {
+      comets.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height / 2,
+        length: 100 + Math.random() * 50,
+        speed: 1 + Math.random(),
+        opacity: 0.7 + Math.random() * 0.3
+      });
+    }
+
+    function drawScene() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Stars
+      ctx.fillStyle = "#ffffff";
+      for (let star of stars) {
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.radius, 0, 2 * Math.PI);
+        ctx.fill();
+        star.y += star.velocity;
+        if (star.y > canvas.height) {
+          star.y = 0;
+          star.x = Math.random() * canvas.width;
+        }
+      }
+
+      // Comets
+      for (let comet of comets) {
+        const gradient = ctx.createLinearGradient(comet.x, comet.y, comet.x - comet.length, comet.y);
+        gradient.addColorStop(0, `rgba(255,255,255,${comet.opacity})`);
+        gradient.addColorStop(1, 'transparent');
+        ctx.strokeStyle = gradient;
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(comet.x, comet.y);
+        ctx.lineTo(comet.x - comet.length, comet.y);
+        ctx.stroke();
+
+        comet.x += comet.speed;
+        if (comet.x > canvas.width + comet.length) {
+          comet.x = -comet.length;
+          comet.y = Math.random() * canvas.height / 2;
+        }
+      }
+
+      requestAnimationFrame(drawScene);
+    }
+
+    drawScene();
+  </script>
+  <!-- JS Plugins -->
+  <script src="{{ '/assets/js/jquery.min.js' | relative_url }}"></script>
+  <script src="{{ '/assets/js/bootstrap.bundle.min.js' | relative_url }}"></script>
+  <script src="{{ '/assets/js/jquery.easing.min.js' | relative_url }}"></script>
+  <script src="{{ '/assets/js/agency.min.js' | relative_url }}"></script>
+  <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</html>

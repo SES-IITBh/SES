@@ -1,0 +1,203 @@
+// Variables for colors to keep consistency
+$primary-color: #43ccf1;
+$secondary-color: #e5edd6;
+$background-color: #0b0c10;
+$text-color: #c5c6c7;
+
+.about-section {
+  position: relative;
+  padding: 100px 0;
+  color: $text-color;
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: 0.02em;
+  overflow: hidden;
+
+  // Optional subtle starfield background - subtle twinkling stars using CSS animation
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(2px 2px at center, $primary-color 10%, transparent 10%) repeat;
+    background-size: 100px 100px;
+    opacity: 0.05;
+    animation: starTwinkle 10s linear infinite;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .section-heading {
+    position: relative;
+    font-size: 3rem;
+    font-weight: 900;
+    color: $primary-color;
+    text-transform: uppercase;
+    margin-bottom: 0.3em;
+    text-shadow: 0 0 8px $secondary-color;
+    z-index: 1;
+
+    &:hover {
+      color: lighten($primary-color, 15%);
+      text-shadow: 0 0 20px lighten($secondary-color, 20%);
+      cursor: default;
+      transition: all 0.3s ease-in-out;
+    }
+  }
+
+  .section-subheading {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: $secondary-color;
+    margin-bottom: 60px;
+    font-style: italic;
+    letter-spacing: 0.05em;
+    z-index: 1;
+  }
+
+  p {
+    font-size: 1.25rem;
+    line-height: 1.9;
+    color: $text-color;
+    margin-bottom: 1.5em;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 400;
+    z-index: 1;
+
+    &:hover {
+      color: lighten($text-color, 15%);
+      transform: scale(1.02);
+      transition: all 0.4s ease-in-out;
+      cursor: default;
+    }
+  }
+
+  h3 {
+    position: relative;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: $primary-color;
+    margin-top: 2.5em;
+    margin-bottom: 1em;
+    max-width: max-content;
+    z-index: 1;
+
+    // Animated gradient underline
+    &.animate-underline {
+      &:after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 3px;
+        background: linear-gradient(90deg, $secondary-color, $primary-color, $secondary-color);
+        bottom: -5px;
+        left: 0;
+        border-radius: 2px;
+        animation: underlineSlide 2.5s ease-in-out infinite alternate;
+      }
+    }
+  }
+
+  ul {
+    list-style: none;
+    padding-left: 0;
+    max-width: 900px;
+    margin: 0 auto 2em auto;
+    position: relative;
+    z-index: 1;
+
+    li {
+      font-size: 1.25rem;
+      padding: 12px 0;
+      color: $text-color;
+      position: relative;
+      line-height: 1.6;
+      cursor: default;
+      transition: color 0.3s ease;
+
+      &:before {
+        content: "🚀";
+        position: absolute;
+        left: -35px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: $primary-color;
+        font-size: 1.3rem;
+        font-family: monospace;
+        transition: transform 0.3s ease;
+      }
+
+      &:hover {
+        color: lighten($primary-color, 20%);
+        &:before {
+          transform: translateY(-50%) scale(1.3);
+          color: lighten($primary-color, 30%);
+          animation: rocketBounce 0.6s ease forwards;
+        }
+      }
+    }
+  }
+
+  // Fade-in animation for elements on scroll
+  .animate-fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    animation-fill-mode: forwards;
+    animation-name: fadeInUp;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+    animation-delay: 0s;
+  }
+
+  // Delays for stagger effect
+  @for $i from 1 through 12 {
+    .delay-#{$i} {
+      animation-delay: 0.2s * $i;
+    }
+  }
+
+  .animate-list li {
+    opacity: 0;
+    transform: translateX(-20px);
+    animation-fill-mode: forwards;
+    animation-name: fadeInRight;
+    animation-duration: 0.8s;
+    animation-timing-function: ease-out;
+  }
+}
+
+// Keyframes
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInRight {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes underlineSlide {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+@keyframes rocketBounce {
+  0% { transform: translateY(-50%) scale(1); }
+  50% { transform: translateY(-60%) scale(1.3); }
+  100% { transform: translateY(-50%) scale(1); }
+}
+
+@keyframes starTwinkle {
+  0%, 100% { opacity: 0.05; }
+  50% { opacity: 0.1; }
+}
