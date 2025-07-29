@@ -12,6 +12,6 @@ description: >-
   Official site of the Space Exploration Society ,IIT Bhilai. 
   Explore our projects, missions, and activities!
 baseurl: "/SES-Website"
-url: "https://ses.github.io"
+url: "https://ses-iitbh.github.io"
 include:
   - _pages
