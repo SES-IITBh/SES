@@ -2,7 +2,7 @@ title: "Space Exploration Society"
 logo:
   path: assets/img/ses.jpg
   height: 100
-email: ashishdash2410@gmail.com
+email: ses@iitbhilai.ac.in
 collections:
   pages:
     output: true
@@ -11,9 +11,7 @@ collections:
 description: >-
   Official site of the Space Exploration Society ,IIT Bhilai. 
   Explore our projects, missions, and activities!
-baseurl: "/SES-Website" 
-url: "https://ashish-kumar-dash.github.io"
+baseurl: "/SES-Website"
+url: "https://ses.github.io"
 include:
   - _pages
-
-
