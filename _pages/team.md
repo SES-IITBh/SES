@@ -14,6 +14,7 @@ permalink: /team/
     </div>
 
     <!-- Secretaries -->
+
   <div class="team-group text-center">
       <h2 class="section-heading"> Secretaries </h2>
       <div class="team-row">
@@ -27,6 +28,7 @@ permalink: /team/
     </div>
 
     <!-- Mentors -->
+
   <div class="team-group text-center">
      <h2 class="section-heading">Mentors</h2>
       <div class="team-row">
@@ -45,19 +47,20 @@ permalink: /team/
     </div>
 
     <!-- Core Members -->
+
   <div class="team-group text-center">
       <h2 class="section-heading">Core Members</h2>
       <div class="core-gallery">
         <!-- Top Row: a, b, c -->
         <div class="core-row">
-          <div class="core-photo-wrapper"><img src="{{ site.baseurl }}/assets/img/team/4.jpg" /></div>
-          <div class="core-photo-wrapper"><img src="{{ site.baseurl }}/assets/img/team/8.jpg" /></div>
+          <div class="core-photo-wrapper"><img src="{{ site.baseurl }}/assets/img/team/7.jpg" /></div>
           <div class="core-photo-wrapper"><img src="{{ site.baseurl }}/assets/img/team/6.jpg" /></div>
+          <div class="core-photo-wrapper"><img src="{{ site.baseurl }}/assets/img/team/8.jpg" /></div>
         </div>
         <!-- Bottom Row: d between a & b, e between b & c -->
         <div class="offset-row">
           <div class="core-photo-wrapper"><img src="{{ site.baseurl }}/assets/img/team/5.jpg" /></div>
-          <div class="core-photo-wrapper"><img src="{{ site.baseurl }}/assets/img/team/7.jpg" /></div>
+          <div class="core-photo-wrapper"><img src="{{ site.baseurl }}/assets/img/team/4.jpg" /></div>
         </div>
       </div>
     </div>
